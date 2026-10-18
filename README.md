@@ -1,6 +1,6 @@
-# Page & Pine
+# Page-Pine (Page & Pine)
 
-A self-hosted, responsive book library and reader with a quiet, Kindle-inspired reading experience. It runs on Python and opens in a browser on your laptop, phone, or tablet. Your database and book files stay on your server.
+An ebook app for reading across PC, mobile, and tablet. Page & Pine is a self-hosted, responsive book library and reader with a quiet, Kindle-inspired experience. It runs on Python and opens in a browser. Your database and book files stay on your server.
 
 ## Start the server
 
