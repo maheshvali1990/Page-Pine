@@ -1,0 +1,15 @@
+* text=auto
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.webmanifest text eol=lf
+*.svg text eol=lf
+*.woff2 binary
+*.ttf binary
+static/fonts/OFL.txt whitespace=-trailing-space
+static/vendor/*-OFL.txt whitespace=-trailing-space
+static/vendor/licenses/*.txt whitespace=-trailing-space

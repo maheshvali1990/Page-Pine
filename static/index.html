@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="A quiet, beautiful reading nook for all your books.">
+  <title>Page &amp; Pine — your reading nook</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <script src="./vendor/jszip.min.js"></script>
+  <script src="./vendor/epub.min.js"></script>
+  <script src="./vendor/pdf.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Page and Pine home">
+        <span class="brand-mark" aria-hidden="true">p<span>&amp;</span>p</span>
+        <span class="brand-name">page<span>&amp;</span>pine</span>
+      </a>
+      <div class="sidebar-label">YOUR SPACE</div>
+      <nav class="side-nav" aria-label="Library views">
+        <button class="nav-item selected" data-view="all"><span class="nav-icon">▤</span>All books<span class="nav-count" id="book-count">0</span></button>
+        <button class="nav-item" data-view="reading"><span class="nav-icon">◉</span>Currently reading<span class="nav-count" id="reading-count">0</span></button>
+        <button class="nav-item" data-view="finished"><span class="nav-icon">✓</span>Finished<span class="nav-count" id="finished-count">0</span></button>
+        <button class="nav-item" data-view="favorites"><span class="nav-icon">♡</span>Favorites<span class="nav-count" id="favorites-count">0</span></button>
+        <button class="nav-item" data-view="collections"><span class="nav-icon">▧</span>Collections</button>
+        <button class="nav-item" data-view="stats"><span class="nav-icon">◷</span>Reading stats</button>
+      </nav>
+      <div class="sidebar-tags" id="sidebar-tags" hidden><div class="sidebar-label">YOUR TAGS</div><div id="tag-navigation"></div></div>
+      <div class="sidebar-note">
+        <span class="note-sparkle">✳</span>
+        <p>A little corner of the world, just for your next chapter.</p>
+      </div>
+      <div class="sidebar-footer"><span class="online-dot"></span> Your private library</div>
+    </aside>
+
+    <main class="main-content" id="library-view">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menu-button" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">YOUR LIBRARY <span>/</span> <strong id="current-section">ALL BOOKS</strong></div>
+        <div class="top-actions">
+          <button class="icon-button search-button" id="search-toggle" aria-label="Search library">⌕</button>
+          <button class="avatar" title="Your reading space">M</button>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow" id="welcome-date">A GOOD DAY TO GET LOST IN A BOOK</p>
+          <h1 id="welcome-title">Your next chapter<br><em>starts here.</em></h1>
+          <p class="welcome-copy">A calm little home for all the stories you love.</p>
+        </div>
+        <div class="reading-art" aria-hidden="true">
+          <div class="art-sun"></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div>
+          <div class="art-stack"><i></i><i></i><i></i><i></i></div>
+          <div class="art-cup"></div>
+        </div>
+      </section>
+
+      <section class="compact-continue" id="compact-continue" hidden>
+        <div class="compact-cover" id="compact-cover"></div>
+        <div class="compact-copy"><span class="eyebrow">PICK UP WHERE YOU LEFT OFF</span><h2 id="compact-title"></h2><p id="compact-meta"></p></div>
+        <button class="primary-button" id="compact-resume">Resume reading</button>
+      </section>
+
+      <section class="continue-section" id="continue-section" hidden>
+        <div class="section-heading"><div><span class="eyebrow">PICK UP WHERE YOU LEFT OFF</span><h2>Back to your story</h2></div></div>
+        <div id="continue-card"></div>
+      </section>
+
+      <section class="library-section">
+        <div class="section-heading library-heading">
+          <div><span class="eyebrow" id="shelf-eyebrow">A SHELF OF POSSIBILITY</span><h2><span id="shelf-name">Your bookshelf</span> <span id="shelf-count">(0)</span></h2></div>
+          <div class="shelf-controls">
+            <label class="search-box" id="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Find a book..." aria-label="Search books"></label>
+            <select id="sort-select" aria-label="Sort books"><option value="recent">Recently added</option><option value="title">Title, A–Z</option><option value="progress">Reading progress</option></select>
+            <button class="icon-button view-toggle" id="view-toggle" aria-label="Switch to list view" title="Switch grid/list view">☷</button>
+            <button class="primary-button add-book" id="add-book"><span>＋</span> Add books</button>
+            <input id="file-input" type="file" accept=".epub,.pdf,.txt,.md,.html,.htm,.azw,.azw3,.azw4,.cb7,.cbc,.cbr,.cbz,.chm,.djvu,.docx,.fb2,.lit,.lrf,.mobi,.odt,.pdb,.prc,.rb,.rtf,.snb,.tcr" multiple hidden>
+          </div>
+        </div>
+        <div class="book-grid" id="book-grid"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <div class="empty-illustration"><span>✳</span><span>⌑</span></div>
+          <h3>Your bookshelf is waiting</h3>
+          <p>Open EPUB, PDF, Word DOCX, or text files directly. AZW3, MOBI, and many more formats work with <a href="https://calibre-ebook.com/download" target="_blank" rel="noopener">Calibre</a> installed. DRM-protected books are not supported.</p>
+          <button class="primary-button" id="empty-add">＋ Add your first book</button>
+        </div>
+      </section>
+      <footer class="library-footer">Made for slow mornings and one-more-chapter nights <span>✳</span></footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="drop-overlay" id="drop-overlay" hidden><div><span>＋</span><strong>Drop books to add them</strong><small>EPUB, PDF, Word and text files</small></div></div>
+  <dialog class="edit-dialog" id="edit-dialog" aria-labelledby="edit-title">
+    <form id="edit-form">
+      <div class="dialog-heading"><div><span class="eyebrow">BOOK DETAILS</span><h2 id="edit-title">Edit this book</h2></div><button class="icon-button" type="button" id="close-edit" aria-label="Close dialog">×</button></div>
+      <label>Title<input name="title" maxlength="500" required></label>
+      <label>Author<input name="author" maxlength="500"></label>
+      <label>Series<input name="series" maxlength="500"></label>
+      <label>Tags (comma-separated)<input name="tags" maxlength="1000"></label>
+      <label>Reading status<select name="status"><option value="want">Want to read</option><option value="reading">Currently reading</option><option value="finished">Finished</option></select></label>
+      <label class="favorite-option"><input name="favorite" type="checkbox"> Add to favorites</label>
+      <div class="dialog-actions"><button class="icon-button" type="button" id="cancel-edit">Cancel</button><button class="primary-button" type="submit">Save changes</button></div>
+    </form>
+  </dialog>
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="reader-modal" role="dialog" aria-modal="true" aria-label="Book reader">
+      <header class="reader-toolbar">
+        <button class="reader-icon" id="close-reader" aria-label="Close reader">←</button>
+        <div class="reader-book-title"><span id="reader-author"></span><strong id="reader-title"></strong></div>
+        <div class="reader-tools">
+          <button class="reader-icon" id="font-smaller" aria-label="Decrease text size">A−</button>
+          <button class="reader-icon" id="font-larger" aria-label="Increase text size">A+</button>
+          <button class="reader-icon" id="theme-toggle" aria-label="Change reading theme">◐</button>
+          <button class="reader-icon" id="reader-history-back" aria-label="Return to previous place" hidden>↶</button>
+          <button class="reader-icon" id="reader-settings-toggle" aria-label="Reading settings">Aa</button>
+          <button class="reader-icon" id="reader-menu" aria-label="Contents, bookmarks and search">☰</button>
+        </div>
+      </header>
+      <div class="reader-progress"><div id="progress-fill"></div><div id="chapter-markers"></div></div>
+      <input class="progress-scrubber" id="progress-scrubber" type="range" min="0" max="1000" value="0" aria-label="Book reading progress">
+      <div class="reader-body">
+        <button class="page-arrow" id="previous-page" aria-label="Previous page">‹</button>
+        <div class="reader-canvas" id="reader-canvas">
+          <div id="epub-view" hidden></div>
+          <div id="text-view" class="prose" hidden></div>
+          <div id="pdf-view" hidden><div id="pdf-single" class="pdf-page"><canvas id="pdf-canvas"></canvas><div id="pdf-text-layer" class="textLayer"></div></div><div id="pdf-continuous" hidden></div></div>
+        </div>
+        <button class="page-arrow" id="next-page" aria-label="Next page">›</button>
+      </div>
+      <footer class="reader-footer"><span id="reader-position">Ready when you are</span><span id="speech-caption" hidden aria-live="polite"></span><div><button id="chapter-summary" hidden>Summarize chapter</button><button id="speech-toggle">Listen</button><button id="contents-button">CONTENTS <span>⌄</span></button></div></footer>
+      <div class="reader-refresh-flash" id="reader-refresh-flash" aria-hidden="true"></div>
+      <aside class="reader-settings" id="reader-settings" hidden>
+        <div class="panel-heading"><strong>Reading settings</strong><button type="button" class="icon-button" data-close-panel>×</button></div>
+        <label>Theme<select id="setting-theme"><option value="auto">Follow device</option><option value="light">Light</option><option value="sepia">Sepia</option><option value="dark">Dark</option><option value="eink">E-ink</option><option value="eink-dark">E-ink Dark</option><option value="black">True black</option></select></label>
+        <label>Typeface<select id="setting-font"><option value="serif">Serif</option><option value="readable">Readable serif</option><option value="dyslexic">OpenDyslexic</option><option value="sans">Sans serif</option><option value="system">System</option></select></label>
+        <label>Text size<input id="setting-size" type="range" min="14" max="32" value="20"><span id="setting-size-label">20 px</span></label>
+        <label>Line height<input id="setting-line-height" type="range" min="1.3" max="2" step="0.1" value="1.6"><span id="setting-line-label">1.6</span></label>
+        <label>Column width<input id="setting-width" type="range" min="48" max="90" value="66"><span id="setting-width-label">66ch</span></label>
+        <label>Alignment<select id="setting-align"><option value="left">Left</option><option value="justify">Justified</option></select></label>
+        <label><input type="checkbox" id="setting-hyphenation"> Hyphenation</label>
+        <label><input type="checkbox" id="setting-continuous"> Continuous scroll</label>
+        <label><input type="checkbox" id="setting-publisher"> Publisher styles</label>
+        <label><input type="checkbox" id="setting-immersive"> Auto-hide controls</label>
+        <label>Spread<select id="setting-spread"><option value="auto">Automatic</option><option value="single">Single page</option><option value="double">Two pages</option></select></label>
+        <label><input type="checkbox" id="setting-refresh-flash"> Page refresh flash</label>
+        <label>Flash every N pages<input id="setting-refresh-every" type="number" min="1" max="100" value="8"></label>
+      </aside>
+      <aside class="contents-panel" id="contents-panel" hidden>
+        <div class="panel-heading"><strong>Your book</strong><button type="button" class="icon-button" data-close-panel>×</button></div>
+        <div class="panel-tabs"><button data-panel-tab="contents" class="selected">Contents</button><button data-panel-tab="bookmarks">Bookmarks</button><button data-panel-tab="highlights">Highlights</button><button data-panel-tab="search">Search</button></div>
+        <div class="panel-content" id="panel-content"></div>
+      </aside>
+      <div class="selection-toolbar" id="selection-toolbar" hidden>
+        <button data-highlight="yellow" aria-label="Yellow highlight">Yellow</button><button data-highlight="green" aria-label="Green highlight">Green</button>
+        <button data-highlight="blue" aria-label="Blue highlight">Blue</button><button data-highlight="pink" aria-label="Pink highlight">Pink</button>
+        <button id="selection-note">Note</button><button id="selection-copy">Copy</button><button id="selection-define">Dictionary</button><button id="selection-explain" hidden>Explain with AI</button>
+      </div>
+      <div class="pdf-tools" id="pdf-tools" hidden><label>Page <input id="pdf-page-input" type="number" min="1" value="1"><span id="pdf-page-total"></span></label><label>Fit<select id="pdf-fit"><option value="width">Width</option><option value="page">Page</option><option value="actual">Actual size</option></select></label><button id="pdf-zoom-out" aria-label="Zoom out">−</button><button id="pdf-zoom-in" aria-label="Zoom in">＋</button></div>
+    </section>
+  </div>
+  <dialog class="auth-dialog" id="auth-dialog"><form id="auth-form"><h2>Welcome back</h2><p>This library is protected with a PIN.</p><label>PIN<input type="password" name="pin" autocomplete="current-password" required></label><button class="primary-button" type="submit">Unlock library</button><p class="auth-error" id="auth-error" hidden></p></form></dialog>
+  <dialog class="feature-dialog" id="feature-dialog"><div class="dialog-heading"><h2 id="feature-title"></h2><button class="icon-button" type="button" data-close-feature aria-label="Close">×</button></div><div id="feature-content"></div></dialog>
+  <dialog class="feature-dialog" id="annotation-dialog"><form id="annotation-form"><div class="dialog-heading"><h2>Edit highlight</h2><button class="icon-button" type="button" data-close-annotation aria-label="Close">×</button></div><label>Highlight color<select name="color"><option value="yellow">Yellow</option><option value="green">Green</option><option value="blue">Blue</option><option value="pink">Pink</option></select></label><label>Note<textarea name="note" rows="4" maxlength="10000"></textarea></label><div class="dialog-actions"><button class="icon-button" id="delete-highlight" type="button">Delete highlight</button><button class="primary-button" type="submit">Save</button></div></form></dialog>
+  <script src="./app.js"></script>
+</body>
+</html>
