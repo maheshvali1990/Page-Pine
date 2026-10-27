@@ -315,6 +315,144 @@ def test_annotations_collections_tags_and_device_progress(app_module):
     assert client.get(f"/api/books/{book_id}/highlights").status_code == 404
 
 
+def test_annotation_exports_include_highlights_and_bookmarks(app_module):
+    _, client, _ = app_module
+    book = client.post(
+        "/api/books", files={"file": ("export.txt", b"export sample text")}
+    ).json()
+    book_id = book["id"]
+    highlight = client.post(
+        f"/api/books/{book_id}/highlights",
+        json={
+            "locator": "chapter-1",
+            "text": "A saved passage",
+            "note": "A saved note",
+            "chapter": "First Chapter",
+            "progress": 0.25,
+        },
+    ).json()
+    bookmark = client.post(
+        f"/api/books/{book_id}/bookmarks",
+        json={
+            "locator": "chapter-2",
+            "label": "Return here",
+            "chapter": "Second Chapter",
+            "progress": 0.75,
+        },
+    ).json()
+
+    json_export = client.get(f"/api/books/{book_id}/highlights.json")
+    assert json_export.status_code == 200
+    exported = json_export.json()
+    assert isinstance(exported, list)
+    exported_highlight = next(item for item in exported if item["id"] == highlight["id"])
+    assert exported_highlight["selected_text"] == "A saved passage"
+    assert exported_highlight["note"] == "A saved note"
+    exported_bookmark = next(item for item in exported if item["id"] == bookmark["id"])
+    assert exported_bookmark == {
+        "id": bookmark["id"],
+        "book_id": book_id,
+        "locator": "chapter-2",
+        "label": "Return here",
+        "chapter": "Second Chapter",
+        "progress": 0.75,
+        "created_at": bookmark["created_at"],
+        "type": "bookmark",
+    }
+
+    markdown_export = client.get(f"/api/books/{book_id}/highlights.md")
+    assert markdown_export.status_code == 200
+    assert "A saved passage" in markdown_export.text
+    assert "A saved note" in markdown_export.text
+    assert "## Bookmarks" in markdown_export.text
+    assert "Return here" in markdown_export.text
+    assert "Second Chapter" in markdown_export.text
+    assert "chapter-2" in markdown_export.text
+
+
+def test_deleting_book_preserves_other_books_and_removes_related_data(app_module):
+    module, client, data_dir = app_module
+    first = client.post(
+        "/api/books",
+        files={"file": ("first.epub", make_epub(title="First Book", include_cover=True))},
+    ).json()
+    second = client.post(
+        "/api/books", files={"file": ("second.txt", b"second book contents")}
+    ).json()
+
+    collection = client.post("/api/collections", json={"name": "Shared collection"}).json()
+    for book in (first, second):
+        book_id = book["id"]
+        assert client.put(
+            f"/api/collections/{collection['id']}/books", json={"bookId": book_id}
+        ).status_code == 200
+        assert client.put(
+            f"/api/books/{book_id}/tags", json={"tags": ["shared"]}
+        ).status_code == 200
+        assert client.post(
+            f"/api/books/{book_id}/highlights",
+            json={"locator": "page-1", "text": f"{book['title']} passage"},
+        ).status_code == 200
+        assert client.post(
+            f"/api/books/{book_id}/bookmarks",
+            json={"locator": "page-2", "label": f"{book['title']} bookmark"},
+        ).status_code == 200
+        assert client.put(
+            f"/api/books/{book_id}/progress",
+            json={"progress": 0.4, "locator": "page-3", "deviceId": "reader"},
+        ).status_code == 200
+        assert client.post(
+            f"/api/books/{book_id}/sessions",
+            json={
+                "startedAt": datetime.now(timezone.utc).isoformat(),
+                "durationSeconds": 60,
+                "progressStart": 0.2,
+                "progressEnd": 0.4,
+            },
+        ).status_code == 200
+
+    first_file = data_dir / "books" / f"{first['id']}.epub"
+    second_file = data_dir / "books" / f"{second['id']}.txt"
+    first_cover = data_dir / "covers" / f"{first['id']}.jpg"
+    assert first_file.is_file()
+    assert second_file.is_file()
+    assert first_cover.is_file()
+
+    assert client.delete(f"/api/books/{first['id']}").status_code == 200
+
+    assert not first_file.exists()
+    assert not first_cover.exists()
+    assert second_file.is_file()
+    assert client.get(f"/api/books/{first['id']}").status_code == 404
+    assert client.get(f"/api/books/{second['id']}").status_code == 200
+    assert client.get(f"/api/books/{second['id']}/highlights").json()[0]["selected_text"] == "second passage"
+    assert client.get(f"/api/books/{second['id']}/bookmarks").json()[0]["label"] == "second bookmark"
+    assert client.get(f"/api/books/{second['id']}/tags").json() == ["shared"]
+    assert [
+        book["id"]
+        for book in client.get(f"/api/collections/{collection['id']}/books").json()
+    ] == [second["id"]]
+    progress = client.get(
+        f"/api/books/{second['id']}/device-progress", params={"device_id": "reader"}
+    ).json()
+    assert progress["progress"] == 0.4
+    with module.db_session() as connection:
+        assert connection.execute(
+            "SELECT COUNT(*) FROM reading_sessions WHERE book_id = ?", (second["id"],)
+        ).fetchone()[0] == 1
+        for table in (
+            "highlights",
+            "bookmarks",
+            "collection_books",
+            "book_tags",
+            "device_progress",
+            "reading_sessions",
+        ):
+            assert connection.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE book_id = ?", (first["id"],)
+            ).fetchone()[0] == 0
+
+
 def test_watch_folder_imports_duplicates_and_rejects_invalid_files(
     app_module, monkeypatch: pytest.MonkeyPatch
 ):

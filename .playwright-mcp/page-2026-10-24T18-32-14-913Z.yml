@@ -1,0 +1,77 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Page and Pine home" [ref=e4] [cursor=pointer]:
+        - /url: "#"
+        - generic [aria-hidden] [ref=e5]:
+          - text: p
+          - generic [ref=e6]: "&"
+          - text: p
+        - generic [ref=e7]: page&pine
+      - generic [ref=e8]: YOUR SPACE
+      - navigation "Library views" [ref=e9]:
+        - button "▤ All books 0" [ref=e10] [cursor=pointer]:
+          - generic [ref=e11]: ▤
+          - text: All books
+          - generic [ref=e12]: "0"
+        - button "◉ Currently reading 0" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: ◉
+          - text: Currently reading
+          - generic [ref=e15]: "0"
+        - button "✓ Finished 0" [ref=e16] [cursor=pointer]:
+          - generic [ref=e17]: ✓
+          - text: Finished
+          - generic [ref=e18]: "0"
+        - button "♡ Favorites 0" [ref=e19] [cursor=pointer]:
+          - generic [ref=e20]: ♡
+          - text: Favorites
+          - generic [ref=e21]: "0"
+        - button "▧ Collections" [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]: ▧
+          - text: Collections
+        - button "◷ Reading stats" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: ◷
+          - text: Reading stats
+      - generic [ref=e26]:
+        - text: ✳
+        - paragraph [ref=e27]: A little corner of the world, just for your next chapter.
+      - generic [ref=e28]: Your private library
+    - main [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - text: YOUR LIBRARY /
+          - strong [ref=e33]: ALL BOOKS
+        - generic [ref=e34]:
+          - button "Search library" [ref=e35] [cursor=pointer]: ⌕
+          - button "M" [ref=e36]
+      - generic [ref=e38]:
+        - paragraph [ref=e39]: SUNDAY, OCTOBER 25
+        - heading [level=1] [ref=e40]:
+          - text: Your next chapter
+          - emphasis [ref=e41]: starts here.
+        - paragraph [ref=e42]: A calm little home for all the stories you love.
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - generic [ref=e56]: A SHELF OF POSSIBILITY
+            - heading "Your bookshelf (0)" [level=2] [ref=e57]
+          - generic [ref=e58]:
+            - combobox "Sort books" [ref=e59] [cursor=pointer]:
+              - option "Recently added" [selected]
+              - option "Title, A–Z"
+              - option "Reading progress"
+            - button "Switch to list view" [ref=e60] [cursor=pointer]: ☷
+            - button "＋ Add books" [ref=e61] [cursor=pointer]
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - text: ✳
+            - generic [ref=e64]: ⌑
+          - heading "Your bookshelf is waiting" [level=3] [ref=e65]
+          - paragraph [ref=e66]:
+            - text: Open EPUB, PDF, Word DOCX, or text files directly. AZW3, MOBI, and many more formats work with
+            - link "Calibre" [ref=e67] [cursor=pointer]:
+              - /url: https://calibre-ebook.com/download
+            - text: installed. DRM-protected books are not supported.
+          - button "＋ Add your first book" [ref=e68] [cursor=pointer]
+      - generic [ref=e69]: Made for slow mornings and one-more-chapter nights ✳
+  - status

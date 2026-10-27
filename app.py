@@ -1410,8 +1410,12 @@ def delete_bookmark(bookmark_id: str) -> dict[str, bool]:
 @app.get("/api/books/{book_id}/highlights.json")
 def export_highlights_json(book_id: str) -> Response:
     highlights = list_highlights(book_id)
+    bookmarks = [
+        {**bookmark, "type": "bookmark"}
+        for bookmark in list_bookmarks(book_id)
+    ]
     return Response(
-        content=json.dumps(highlights, ensure_ascii=False, indent=2),
+        content=json.dumps([*highlights, *bookmarks], ensure_ascii=False, indent=2),
         media_type="application/json",
         headers={"Content-Disposition": f'attachment; filename="{book_id}-highlights.json"'},
     )
@@ -1428,6 +1432,18 @@ def export_highlights_markdown(book_id: str) -> Response:
         sections.extend((f"> {highlight['selected_text']}", ""))
         if highlight["note"]:
             sections.extend((f"Note: {highlight['note']}", ""))
+    bookmarks = list_bookmarks(book_id)
+    if bookmarks:
+        sections.extend(("## Bookmarks", ""))
+        for bookmark in bookmarks:
+            label = bookmark["label"] or "Untitled bookmark"
+            details = [
+                f"Progress: {bookmark['progress']:.0%}",
+                f"Location: {bookmark['locator']}",
+            ]
+            if bookmark["chapter"]:
+                details.insert(0, f"Chapter: {bookmark['chapter']}")
+            sections.extend((f"- **{label}** ({'; '.join(details)})", ""))
     return Response(
         content="\n".join(sections),
         media_type="text/markdown; charset=utf-8",

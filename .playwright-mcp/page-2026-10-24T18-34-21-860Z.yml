@@ -1,0 +1,136 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Page and Pine home" [ref=e4] [cursor=pointer]:
+        - /url: "#"
+        - generic [aria-hidden] [ref=e5]:
+          - text: p
+          - generic [ref=e6]: "&"
+          - text: p
+        - generic [ref=e7]: page&pine
+      - generic [ref=e8]: YOUR SPACE
+      - navigation "Library views" [ref=e9]:
+        - button "▤ All books 3" [ref=e70] [cursor=pointer]:
+          - generic [ref=e11]: ▤
+          - text: All books
+          - generic [ref=e12]: "3"
+        - button "◉ Currently reading 0" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: ◉
+          - text: Currently reading
+          - generic [ref=e15]: "0"
+        - button "✓ Finished 0" [ref=e16] [cursor=pointer]:
+          - generic [ref=e17]: ✓
+          - text: Finished
+          - generic [ref=e18]: "0"
+        - button "♡ Favorites 0" [ref=e19] [cursor=pointer]:
+          - generic [ref=e20]: ♡
+          - text: Favorites
+          - generic [ref=e21]: "0"
+        - button "▧ Collections" [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]: ▧
+          - text: Collections
+        - button "◷ Reading stats" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: ◷
+          - text: Reading stats
+      - paragraph [ref=e27]: A little corner of the world, just for your next chapter.
+      - generic [ref=e28]: Your private library
+    - main [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - text: YOUR LIBRARY /
+          - strong [ref=e33]: ALL BOOKS
+        - generic [ref=e34]:
+          - button "Search library" [ref=e35] [cursor=pointer]: ⌕
+          - button "M" [ref=e36]
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - generic [ref=e56]: A SHELF OF POSSIBILITY
+            - heading "Your bookshelf (3)" [level=2] [ref=e71]
+          - generic [ref=e58]:
+            - combobox "Sort books" [ref=e59] [cursor=pointer]:
+              - option "Recently added" [selected]
+              - option "Title, A–Z"
+              - option "Reading progress"
+            - button "Switch to list view" [ref=e60] [cursor=pointer]: ☷
+            - button "＋ Add books" [ref=e61] [cursor=pointer]
+        - generic [ref=e72]:
+          - article [ref=e230] [cursor=pointer]:
+            - generic [ref=e231]:
+              - button "Read sample" [ref=e232]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]: TXT
+                  - generic [ref=e235]: sample
+                  - generic [ref=e236]: Unknown author
+              - group [ref=e237]:
+                - generic "Book actions for sample" [ref=e238]: ⋯
+            - generic [ref=e239]:
+              - generic "sample" [ref=e240]
+              - generic [ref=e241]: Unknown author
+              - generic [ref=e243]:
+                - generic [ref=e244]: Added Oct 25
+                - generic [ref=e245]: TXT
+          - article [ref=e246] [cursor=pointer]:
+            - generic [ref=e247]:
+              - button "Read sample" [ref=e248]:
+                - generic [ref=e249]:
+                  - generic [ref=e250]: PDF
+                  - generic [ref=e251]: sample
+                  - generic [ref=e252]: Unknown author
+              - group [ref=e253]:
+                - generic "Book actions for sample" [ref=e254]: ⋯
+            - generic [ref=e255]:
+              - generic "sample" [ref=e256]
+              - generic [ref=e257]: Unknown author
+              - generic [ref=e259]:
+                - generic [ref=e260]: Added Oct 25
+                - generic [ref=e261]: PDF
+          - article [ref=e262] [cursor=pointer]:
+            - generic [ref=e263]:
+              - button "Read Browser Validation EPUB" [ref=e264]:
+                - generic [ref=e265]:
+                  - generic [ref=e266]: EPUB
+                  - generic [ref=e267]: Browser Validation EPUB
+                  - generic [ref=e268]: Jane Reader
+              - group [ref=e269]:
+                - generic "Book actions for Browser Validation EPUB" [ref=e270]: ⋯
+            - generic [ref=e271]:
+              - generic "Browser Validation EPUB" [ref=e272]
+              - generic [ref=e273]: Jane Reader
+              - generic [ref=e275]:
+                - generic [ref=e276]: Added Oct 25
+                - generic [ref=e277]: EPUB
+      - generic [ref=e69]: Made for slow mornings and one-more-chapter nights
+  - status: 3 books added to your shelf.
+  - dialog "Book reader" [ref=e170]:
+    - banner [ref=e171]:
+      - button "Close reader" [ref=e172] [cursor=pointer]: ←
+      - generic [ref=e173]:
+        - generic [ref=e174]: Jane Reader
+        - strong [ref=e175]: Browser Validation EPUB
+      - generic [ref=e176]:
+        - button "Decrease text size" [ref=e177] [cursor=pointer]: A−
+        - button "Increase text size" [ref=e178] [cursor=pointer]: A+
+        - button "Change reading theme" [ref=e179] [cursor=pointer]: ◐
+        - button "Reading settings" [ref=e180] [cursor=pointer]: Aa
+        - button "Contents, bookmarks and search" [active] [ref=e181] [cursor=pointer]: ☰
+    - generic [ref=e184]:
+      - button "Previous page" [ref=e185] [cursor=pointer]: ‹
+      - iframe [ref=e279]:
+        - paragraph [ref=f2e2]: Chapter text
+      - button "Next page" [ref=e191] [cursor=pointer]: ›
+    - contentinfo [ref=e192]:
+      - generic [ref=e193]: Page 1 of 1
+      - generic [ref=e194]:
+        - button "Listen" [ref=e195] [cursor=pointer]
+        - button "CONTENTS ⌄" [ref=e196] [cursor=pointer]
+    - complementary [ref=e280]:
+      - generic [ref=e281]:
+        - strong [ref=e282]: Your book
+        - button "×" [ref=e283] [cursor=pointer]
+      - generic [ref=e284]:
+        - button "Contents" [ref=e285] [cursor=pointer]
+        - button "Bookmarks" [ref=e286] [cursor=pointer]
+        - button "Highlights" [ref=e287] [cursor=pointer]
+        - button "Search" [ref=e288] [cursor=pointer]
+      - paragraph [ref=e290]: No table of contents available for this book.

@@ -66,7 +66,7 @@ Library data, local environments, and secrets are excluded by `.gitignore`. Thir
 
 EPUB, PDF, Word DOCX, TXT, Markdown, and HTML/HTM open directly. AZW3, AZW, MOBI, RTF, ODT, FB2, CBZ/CBR, and other formats supported by [Calibre](https://calibre-ebook.com/) can be converted to EPUB when Calibre's `ebook-convert` command is installed and available on `PATH`. Legacy `.doc` files are not supported. DRM-protected, corrupted, or unsupported files cannot be read; DRM removal is not supported.
 
-The reader includes a real-cover library with progress, search, favorites, status and metadata editing, collections, sidebar tag filters, and delete confirmation. EPUB, PDF, and text readers support saved reading preferences and positions; EPUB/PDF also support in-book search. PDF offers fit, zoom, page navigation, selectable text, dark mode, and continuous lazy rendering. Highlights, notes, and bookmarks can be edited and exported as Markdown or JSON.
+The reader includes a real-cover library with progress, search, favorites, status and metadata editing, collections, sidebar tag filters, and delete confirmation. EPUB, PDF, and text readers support saved reading preferences and positions; EPUB/PDF also support in-book search. PDF offers fit, zoom, page navigation, selectable text, dark mode, and continuous lazy rendering. Highlights, notes, and bookmarks can be edited and exported as Markdown or JSON; exports include bookmark labels, chapters, progress, and locators alongside highlight content.
 
 ## Reading on mobile and offline
 

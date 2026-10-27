@@ -1,0 +1,187 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "Page and Pine home" [ref=e4] [cursor=pointer]:
+        - /url: "#"
+        - generic [aria-hidden] [ref=e5]:
+          - text: p
+          - generic [ref=e6]: "&"
+          - text: p
+        - generic [ref=e7]: page&pine
+      - generic [ref=e8]: YOUR SPACE
+      - navigation "Library views" [ref=e9]:
+        - button "▤ All books 3" [ref=e70] [cursor=pointer]:
+          - generic [ref=e11]: ▤
+          - text: All books
+          - generic [ref=e12]: "3"
+        - button "◉ Currently reading 0" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: ◉
+          - text: Currently reading
+          - generic [ref=e15]: "0"
+        - button "✓ Finished 0" [ref=e16] [cursor=pointer]:
+          - generic [ref=e17]: ✓
+          - text: Finished
+          - generic [ref=e18]: "0"
+        - button "♡ Favorites 0" [ref=e19] [cursor=pointer]:
+          - generic [ref=e20]: ♡
+          - text: Favorites
+          - generic [ref=e21]: "0"
+        - button "▧ Collections" [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]: ▧
+          - text: Collections
+        - button "◷ Reading stats" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: ◷
+          - text: Reading stats
+      - paragraph [ref=e27]: A little corner of the world, just for your next chapter.
+      - generic [ref=e28]: Your private library
+    - main [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - text: YOUR LIBRARY /
+          - strong [ref=e33]: ALL BOOKS
+        - generic [ref=e34]:
+          - button "Search library" [ref=e35] [cursor=pointer]: ⌕
+          - button "M" [ref=e36]
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - generic [ref=e56]: A SHELF OF POSSIBILITY
+            - heading "Your bookshelf (3)" [level=2] [ref=e71]
+          - generic [ref=e58]:
+            - combobox "Sort books" [ref=e59] [cursor=pointer]:
+              - option "Recently added" [selected]
+              - option "Title, A–Z"
+              - option "Reading progress"
+            - button "Switch to list view" [ref=e60] [cursor=pointer]: ☷
+            - button "＋ Add books" [ref=e61] [cursor=pointer]
+        - generic [ref=e72]:
+          - article [ref=e121] [cursor=pointer]:
+            - generic [ref=e122]:
+              - button "Read sample" [ref=e123]:
+                - generic [ref=e124]:
+                  - generic [ref=e125]: TXT
+                  - generic [ref=e126]: sample
+                  - generic [ref=e127]: Unknown author
+              - group [ref=e128]:
+                - generic "Book actions for sample" [ref=e129]: ⋯
+            - generic [ref=e130]:
+              - generic "sample" [ref=e131]
+              - generic [ref=e132]: Unknown author
+              - generic [ref=e134]:
+                - generic [ref=e135]: Added Oct 25
+                - generic [ref=e136]: TXT
+          - article [ref=e137] [cursor=pointer]:
+            - generic [ref=e138]:
+              - button "Read sample" [ref=e139]:
+                - generic [ref=e140]:
+                  - generic [ref=e141]: PDF
+                  - generic [ref=e142]: sample
+                  - generic [ref=e143]: Unknown author
+              - group [ref=e144]:
+                - generic "Book actions for sample" [ref=e145]: ⋯
+            - generic [ref=e146]:
+              - generic "sample" [ref=e147]
+              - generic [ref=e148]: Unknown author
+              - generic [ref=e150]:
+                - generic [ref=e151]: Added Oct 25
+                - generic [ref=e152]: PDF
+          - article [ref=e153] [cursor=pointer]:
+            - generic [ref=e154]:
+              - button "Read Browser Validation EPUB" [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: EPUB
+                  - generic [ref=e158]: Browser Validation EPUB
+                  - generic [ref=e159]: Jane Reader
+              - group [ref=e160]:
+                - generic "Book actions for Browser Validation EPUB" [ref=e161]: ⋯
+            - generic [ref=e162]:
+              - generic "Browser Validation EPUB" [ref=e163]
+              - generic [ref=e164]: Jane Reader
+              - generic [ref=e166]:
+                - generic [ref=e167]: Added Oct 25
+                - generic [ref=e168]: EPUB
+      - generic [ref=e69]: Made for slow mornings and one-more-chapter nights
+  - status: 3 books added to your shelf.
+  - dialog "Book reader" [ref=e170]:
+    - banner [ref=e171]:
+      - button "Close reader" [ref=e172] [cursor=pointer]: ←
+      - generic [ref=e173]:
+        - generic [ref=e174]: Jane Reader
+        - strong [ref=e175]: Browser Validation EPUB
+      - generic [ref=e176]:
+        - button "Decrease text size" [ref=e177] [cursor=pointer]: A−
+        - button "Increase text size" [ref=e178] [cursor=pointer]: A+
+        - button "Change reading theme" [ref=e179] [cursor=pointer]: ◐
+        - button "Reading settings" [active] [ref=e180] [cursor=pointer]: Aa
+        - button "Contents, bookmarks and search" [ref=e181] [cursor=pointer]: ☰
+    - generic [ref=e184]:
+      - button "Previous page" [ref=e185] [cursor=pointer]: ‹
+      - button "Next page" [ref=e191] [cursor=pointer]: ›
+    - contentinfo [ref=e192]:
+      - generic [ref=e193]: Reading · 0% · 8m left
+      - generic [ref=e194]:
+        - button "Listen" [ref=e195] [cursor=pointer]
+        - button "CONTENTS ⌄" [ref=e196] [cursor=pointer]
+    - complementary [ref=e197]:
+      - generic [ref=e198]:
+        - strong [ref=e199]: Reading settings
+        - button "×" [ref=e200] [cursor=pointer]
+      - generic [ref=e201]:
+        - text: Theme
+        - combobox "Theme" [ref=e202]:
+          - option "Follow device"
+          - option "Light"
+          - option "Sepia"
+          - option "Dark"
+          - option "E-ink" [selected]
+          - option "E-ink Dark"
+          - option "True black"
+      - generic [ref=e203]:
+        - text: Typeface
+        - combobox "Typeface" [ref=e204]:
+          - option "Serif" [selected]
+          - option "Readable serif"
+          - option "OpenDyslexic"
+          - option "Sans serif"
+          - option "System"
+      - generic [ref=e205]:
+        - text: Text size
+        - slider "Text size 20 px" [ref=e206]: "20"
+        - generic [ref=e207]: 20 px
+      - generic [ref=e208]:
+        - text: Line height
+        - slider "Line height 1.6" [ref=e209]: "1.6"
+        - generic [ref=e210]: "1.6"
+      - generic [ref=e211]:
+        - text: Column width
+        - slider "Column width 66ch" [ref=e212]: "66"
+        - generic [ref=e213]: 66ch
+      - generic [ref=e214]:
+        - text: Alignment
+        - combobox "Alignment" [ref=e215]:
+          - option "Left" [selected]
+          - option "Justified"
+      - generic [ref=e216]:
+        - checkbox "Hyphenation" [ref=e217]
+        - text: Hyphenation
+      - generic [ref=e218]:
+        - checkbox "Continuous scroll" [disabled] [ref=e219]
+        - text: Continuous scroll
+      - generic [ref=e220]:
+        - checkbox "Publisher styles" [ref=e221]
+        - text: Publisher styles
+      - generic [ref=e222]:
+        - checkbox "Auto-hide controls" [ref=e223]
+        - text: Auto-hide controls
+      - generic [ref=e224]:
+        - text: Spread
+        - combobox "Spread" [disabled] [ref=e225]:
+          - option "Automatic" [selected]
+          - option "Single page"
+          - option "Two pages"
+      - generic [ref=e226]:
+        - checkbox "Page refresh flash" [ref=e227]
+        - text: Page refresh flash
+      - generic [ref=e228]:
+        - text: Flash every N pages
+        - spinbutton "Flash every N pages" [disabled] [ref=e229]: "8"
